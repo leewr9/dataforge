@@ -1,5 +1,5 @@
 from data.base import BaseData
-from data.utils import get_user, get_time, get_ip
+from data.utils import get_time, get_id, get_ip
 
 
 class SecurityData(BaseData):
@@ -25,7 +25,7 @@ class SecurityData(BaseData):
         self.data_type = data_type
 
     def generate(self):
-        self.user = get_user()
+        self.user_id = f"u{get_id()}"
         self.ip = get_ip()
         self.timestamp = get_time().strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -35,11 +35,11 @@ class SecurityData(BaseData):
 
     def get_data(self):
         return {
-            "user": self.user,
+            "user_id": self.user_id,
             "ip": self.ip,
             "event": self.event,
             "timestamp": self.timestamp,
         }
 
     def to_text(self):
-        return f"[{self.timestamp}] {self.user}@{self.ip} -> {self.event}"
+        return f'[{self.timestamp}] "{self.user_id}"@{self.ip} -> {self.event}'

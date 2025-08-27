@@ -43,4 +43,4 @@ class PaymentsData(BaseData):
         }
 
     def to_text(self):
-        return f"[{self.timestamp}] {self.user_id} {self.amount}{self.currency} via {self.method} -> {self.status}"
+        return f"[{self.timestamp}] {self.user_id} {self.transaction_id} {self.amount}{self.currency} via {self.method} -> {self.status}"

@@ -31,4 +31,4 @@ class IoTData(BaseData):
         }
 
     def to_text(self):
-        return f"[{self.timestamp}] {self.device_id} temp={self.temperature}°C hum={self.humidity}%"
+        return f"[{self.timestamp}] {self.device_id} temp={self.temperature}°C hum={self.humidity}% loc={self.location[0]},{self.location[1]}"

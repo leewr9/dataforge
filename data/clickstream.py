@@ -24,7 +24,7 @@ class ClickstreamData(BaseData):
         self.data_type = data_type
 
     def generate(self):
-        self.user_id = get_id()
+        self.user_id = f"u{get_id()}"
         self.timestamp = get_time().strftime("%Y-%m-%dT%H:%M:%SZ")
         self.page = get_page()
         self.device = get_device()
@@ -43,5 +43,6 @@ class ClickstreamData(BaseData):
         }
 
     def to_text(self):
-        return f"[{self.timestamp}] {self.user_id} {self.device} {self.action} {self.page}"
-        
+        return (
+            f"[{self.timestamp}] {self.user_id} {self.device} {self.action} {self.page}"
+        )

@@ -52,4 +52,4 @@ class AccessData(BaseData):
         }
 
     def to_text(self):
-        return f"[{self.timestamp}] {self.log_id} {self.client_ip} {self.user} {self.method} {self.page} {self.status} {self.bytes_sent} {self.device}"
+        return f'[{self.timestamp}] {self.log_id} {self.client_ip} "{self.user}" "{self.request}" {self.status} {self.bytes_sent} "{self.referer}" {self.device}'
