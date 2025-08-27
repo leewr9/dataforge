@@ -45,7 +45,7 @@ def main():
         "-l",
         type=int,
         default=None,
-        help="Number of data entries to generate. If omitted, duration is used.",
+        help="Number of data entries to generate. if not set, duration is used.",
     )
 
     parser.add_argument(
@@ -57,11 +57,11 @@ def main():
     )
 
     parser.add_argument(
-        "--file-format",
-        "-ff",
+        "--data-format",
+        "-df",
         choices=["text", "json", "csv"],
         default="json",
-        help="File format to save data (applies only when --type is 'file')",
+        help="Output data format (default: json)",
     )
 
     parser.add_argument(
@@ -81,16 +81,12 @@ def main():
 
     args = parser.parse_args()
 
+    data = DATA_TYPES[args.data](args.data_format)
     if args.type == "file":
-        file_write(
-            DATA_TYPES[args.data],
-            lines=args.lines,
-            duration=args.duration,
-            file_type=args.file_format,
-        )
+        file_write(data, lines=args.lines, duration=args.duration)
     if args.type == "stream":
         stream_send(
-            DATA_TYPES[args.data],
+            data,
             topic=args.topic,
             lines=args.lines,
             duration=args.duration,

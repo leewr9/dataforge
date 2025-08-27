@@ -4,9 +4,7 @@ import time
 from data.base import BaseData
 
 
-def file(data_cls: BaseData, lines=None, duration=300, file_type="json"):
-    data = data_cls(file_type)
-
+def file(data: BaseData, lines=None, duration=300):
     with open(data.get_filename(), "a", encoding="utf-8") as f:
         if lines:
             for _ in range(lines):
@@ -19,11 +17,7 @@ def file(data_cls: BaseData, lines=None, duration=300, file_type="json"):
                 time.sleep(random.uniform(0.1, 1.0))
 
 
-def stream(
-    data_cls: BaseData, topic: str, lines=None, duration=300, stream_type="kafka"
-):
-    data = data_cls("json")
-
+def stream(data: BaseData, topic: str, lines=None, duration=300, stream_type="kafka"):
     from stream.kafka import KafkaProducerWrapper
     from stream.pulsar import PulsarProducerWrapper
 
