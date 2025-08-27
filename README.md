@@ -54,7 +54,7 @@ uv run python main.py [options]
     ```
   - Generate `clickstream` events for **10 minutes** as `CSV`:
     ```bash
-    uv run python main.py -t file -d clickstream -dr 600 -ff csv
+    uv run python main.py -t file -d clickstream -du 600 -ff csv
     ```
 
 - **Stream data to Kafka**
@@ -66,7 +66,7 @@ uv run python main.py [options]
 - **Stream data to Pulsar**
   - Send `iot` events for **1 hour** to `Pulsar`:
     ```bash
-    uv run python main.py -t stream -d iot -dr 3600 -sp pulsar --topic iots
+    uv run python main.py -t stream -d iot -du 3600 -sp pulsar --topic iots
     ```
 
 ### Help
