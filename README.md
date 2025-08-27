@@ -27,7 +27,7 @@ Generate diverse raw data from different events, logs, and interactions, and out
 
 ## Usage
 
-You can specify the **output type** (file or stream), the **data domain**, and additional configuration options.
+You can specify the **Output type**, the **Data domain** and additional configuration options.
 
 ```bash
 uv run python main.py [options]
@@ -50,23 +50,23 @@ uv run python main.py [options]
 - **Generate file data**
   - Generate `access` events of **1000 records** as `JSON`:
     ```bash
-    python main.py -t file -d access -l 1000 -ff json
+    uv run python main.py -t file -d access -l 1000 -ff json
     ```
   - Generate `clickstream` events for **10 minutes** as `CSV`:
     ```bash
-    python main.py -t file -d clickstream -dr 600 -ff csv
+    uv run python main.py -t file -d clickstream -dr 600 -ff csv
     ```
 
 - **Stream data to Kafka**
   - Send `payment` events continuously to `Kafka`:
     ```bash
-    python main.py -t stream -d payment -sp kafka --topic payments
+    uv run python main.py -t stream -d payment -sp kafka --topic payments
     ```
 
 - **Stream data to Pulsar**
   - Send `iot` events for **1 hour** to `Pulsar`:
     ```bash
-    python main.py -t stream -d iot -dr 3600 -sp pulsar --topic clicks
+    uv run python main.py -t stream -d iot -dr 3600 -sp pulsar --topic iots
     ```
 
 ### Help
@@ -74,7 +74,7 @@ uv run python main.py [options]
 For detailed usage, run:
 
 ```bash
-python main.py --help
+uv run python main.py --help
 ```
 
 ## License
