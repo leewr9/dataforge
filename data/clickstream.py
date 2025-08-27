@@ -43,6 +43,5 @@ class ClickstreamData(BaseData):
         }
 
     def to_text(self):
-        return (
-            f"[{self.timestamp}] {self.user_id} {self.device} {self.action} {self.page}"
-        )
+        return f"[{self.timestamp}] {self.user_id} {self.device} {self.action} {self.page}"
+        
