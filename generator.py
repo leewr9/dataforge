@@ -19,14 +19,28 @@ def file(data: BaseData, lines=None, duration=300):
                 time.sleep(random.uniform(0.1, 1.0))
 
 
-def stream(data: BaseData, topic: str, lines=None, duration=300, stream_type="kafka"):
+def stream(
+    data: BaseData,
+    topic: str,
+    lines=None,
+    duration=300,
+    stream_type="kafka",
+    stream_url=None,
+):
     from stream.kafka import KafkaProducerWrapper
     from stream.pulsar import PulsarProducerWrapper
 
+    if not stream_url:
+        if stream_type == "kafka":
+            stream_url = "localhost:9092"
+        elif stream_type == "pulsar":
+            stream_url = "localhost:6650"
+    host, port = stream_url.rsplit(":", 1)
+
     if stream_type == "kafka":
-        producer = KafkaProducerWrapper()
+        producer = KafkaProducerWrapper(host, port)
     elif stream_type == "pulsar":
-        producer = PulsarProducerWrapper()
+        producer = PulsarProducerWrapper(host, port)
     else:
         raise ValueError(f"Unsupported stream type: {stream_type}")
 
