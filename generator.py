@@ -7,10 +7,12 @@ from data.base import BaseData
 def file(data: BaseData, lines=None, duration=300):
     with open(data.get_filename(), "a", encoding="utf-8") as f:
         if lines:
-            for _ in range(lines):
+            f.write(data.get(header=True) + "\n")
+            for _ in range(lines - 1):
                 f.write(data.get() + "\n")
         else:
             end_time = time.time() + duration
+            f.write(data.get(header=True) + "\n")
             while time.time() < end_time:
                 f.write(data.get() + "\n")
                 f.flush()
