@@ -42,7 +42,7 @@ uv run python main.py [options]
 | `-t`, `--type`             | Output type: `file` or `stream`                                     | _required_                                              |
 | `-d`, `--data`             | Data domain: `access`, `clickstream`, `iot`, `payments`, `security` | _required_                                              |
 | `-l`, `--line`             | Number of lines to generate                                         | `None`                                                  |
-| `-o`, `--output`           | Output file name/path                                               | `output/<data>.json`                                    |
+| `-o`, `--output`           | Output file name/path                                               | `output/<data>`                                         |
 | `-du`, `--duration`        | Duration in seconds to generate data                                | `300` (5 minutes)                                       |
 | `-df`, `--data-format`     | Output data format: `text`, `json`, `csv`                           | `json`                                                  |
 | `-sp`, `--stream-platform` | Streaming platform: `kafka`, `pulsar`                               | `kafka`                                                 |

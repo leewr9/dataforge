@@ -53,7 +53,7 @@ def main():
         "-o",
         type=str,
         default=None,
-        help="Output file name/path when --type is 'file'.",
+        help="Output file name/path when --type is 'file' (extension will be added automatically)",
     )
 
     parser.add_argument(
