@@ -20,18 +20,18 @@ class BaseData(ABC):
     def to_json(self) -> str:
         return json.dumps(self.get_data())
 
-    def to_csv(self) -> str:
-        df = pd.DataFrame(self.get_data())
-        return df.to_csv(index=False)
+    def to_csv(self, header=False) -> str:
+        df = pd.DataFrame([self.get_data()])
+        return df.to_csv(index=False, header=header, lineterminator="\n")
 
-    def get(self) -> Any:
+    def get(self, header=False) -> Any:
         self.generate()
         if self.data_type == "text":
-            return self.to_text()
+            return self.to_text().strip()
         elif self.data_type == "json":
-            return self.to_json()
+            return self.to_json().strip()
         elif self.data_type == "csv":
-            return self.to_csv()
+            return self.to_csv(header).strip()
         raise ValueError(f"Unsupported data type: {self.data_type}")
 
     def get_filename(self) -> str:
@@ -41,7 +41,7 @@ class BaseData(ABC):
         if self.data_type == "text":
             return f"{self.name}.log"
         elif self.data_type == "json":
-            return f"{self.name}.json"
+            return f"{self.name}.jsonl"
         elif self.data_type == "csv":
             return f"{self.name}.csv"
 
