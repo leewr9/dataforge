@@ -21,9 +21,6 @@ class SecurityData(BaseData):
         "privilege_escalation",
     ]
 
-    def __init__(self, data_type: str = "json"):
-        self.data_type = data_type
-
     def generate(self):
         self.user_id = f"u{get_id()}"
         self.ip = get_ip()

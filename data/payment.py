@@ -2,8 +2,8 @@ from data.base import BaseData
 from data.utils import get_time, get_id
 
 
-class PaymentsData(BaseData):
-    name = "payments"
+class PaymentData(BaseData):
+    name = "payment"
     methods = [
         "credit_card",
         "paypal",
@@ -15,9 +15,6 @@ class PaymentsData(BaseData):
         "gift_card",
         "crypto",
     ]
-
-    def __init__(self, data_type: str = "json"):
-        self.data_type = data_type
 
     def generate(self):
         self.transaction_id = f"tx{get_id()}"

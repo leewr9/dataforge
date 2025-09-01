@@ -16,9 +16,6 @@ class AccessData(BaseData):
         "/dashboard",
     ]
 
-    def __init__(self, data_type: str = "json"):
-        self.data_type = data_type
-
     def generate(self):
         self.log_id = f"access-{get_id()}"
         self.timestamp = get_time().strftime("%Y-%m-%dT%H:%M:%SZ")

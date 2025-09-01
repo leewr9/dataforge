@@ -1,10 +1,19 @@
 from abc import ABC, abstractmethod
 from typing import Any
+
+import os
 import json
 import pandas as pd
 
 
 class BaseData(ABC):
+    def __init__(self, data_type: str = "json", output=None):
+        self.data_type = data_type
+        if output:
+            self.name = output
+        else:
+            self.name = os.path.join("output", self.name)
+
     @abstractmethod
     def generate(self) -> None:
         pass
@@ -37,6 +46,10 @@ class BaseData(ABC):
     def get_filename(self) -> str:
         if not self.name:
             raise ValueError("Data name is not defined.")
+
+        dir_name = os.path.dirname(self.name)
+        if not os.path.exists(dir_name):
+            os.makedirs(dir_name)
 
         if self.data_type == "text":
             return f"{self.name}.log"
