@@ -9,4 +9,5 @@ dependencies = [
     "pandas>=2.3.2",
     "psycopg2>=2.9.10",
     "pulsar-client>=3.8.0",
+    "pytest>=8.4.1",
 ]

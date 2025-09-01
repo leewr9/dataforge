@@ -1,5 +1,7 @@
 # Dataforge
 
+[![build-test](https://github.com/leewr9/dataforge/actions/workflows/build-test.yml/badge.svg)](https://github.com/leewr9/dataforge/actions/workflows/build-test.yml)
+
 Generate diverse raw data from different events, logs, and interactions, and output it in any format you need. With support for a wide range of test data, you can explore and use it freely.
 
 ## Feature
