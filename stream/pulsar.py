@@ -1,7 +1,6 @@
 from stream.base import StreamWrapper
 from pulsar import Client
 import json
-import socket
 
 
 class PulsarProducerWrapper(StreamWrapper):

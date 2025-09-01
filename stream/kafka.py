@@ -1,14 +1,13 @@
 from stream.base import StreamWrapper
 from kafka import KafkaProducer
 import json
-import socket
 
 
 class KafkaProducerWrapper(StreamWrapper):
     def __init__(self, host="localhost", port=9092):
         self.producer = None
 
-        if not self._check_connection():
+        if not self._check_connection(host, port):
             raise ConnectionError(f"Cannot connect to Kafka at {host}:{port}")
 
         try:
