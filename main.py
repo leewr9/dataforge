@@ -2,7 +2,7 @@ import argparse
 from data.access import AccessData
 from data.clickstream import ClickstreamData
 from data.iot import IoTData
-from data.payment import PaymentsData
+from data.payment import PaymentData
 from data.security import SecurityData
 from generator import file as file_write, stream as stream_send
 
@@ -10,7 +10,7 @@ DATA_TYPES = {
     "access": AccessData,
     "clickstream": ClickstreamData,
     "iot": IoTData,
-    "payments": PaymentsData,
+    "payment": PaymentData,
     "security": SecurityData,
 }
 
@@ -49,6 +49,14 @@ def main():
     )
 
     parser.add_argument(
+        "--output",
+        "-o",
+        type=str,
+        default=None,
+        help="Output file name/path when --type is 'file'.",
+    )
+
+    parser.add_argument(
         "--duration",
         "-du",
         type=int,
@@ -73,6 +81,14 @@ def main():
     )
 
     parser.add_argument(
+        "--stream-url",
+        "-su",
+        type=str,
+        default=None,
+        help="Streaming server URL when --type is 'stream'.",
+    )
+
+    parser.add_argument(
         "--topic",
         "-tp",
         default="test",
@@ -81,7 +97,7 @@ def main():
 
     args = parser.parse_args()
 
-    data = DATA_TYPES[args.data](args.data_format)
+    data = DATA_TYPES[args.data](args.data_format, args.output)
     if args.type == "file":
         file_write(data, lines=args.lines, duration=args.duration)
     if args.type == "stream":
@@ -91,6 +107,7 @@ def main():
             lines=args.lines,
             duration=args.duration,
             stream_type=args.stream_platform,
+            stream_url=args.stream_url,
         )
 
 

@@ -40,9 +40,12 @@ uv run python main.py [options]
 | `-t`, `--type`             | Output type: `file` or `stream`                                     | _required_        |
 | `-d`, `--data`             | Data domain: `access`, `clickstream`, `iot`, `payments`, `security` | _required_        |
 | `-l`, `--line`             | Number of lines to generate                                         | `None`            |
+| `-o`, `--output`           | Output file name/path                                               | `output/<data>.json`     |
 | `-du`, `--duration`        | Duration in seconds to generate data                                | `300` (5 minutes) |
 | `-df`, `--data-format`     | Output data format: `text`, `json`, `csv`                           | `json`            |
 | `-sp`, `--stream-platform` | Streaming platform: `kafka`, `pulsar`                               | `kafka`           |
+| `-su`, `--stream-url`      | Streaming server URL                                                | `kafka`: `localhost:9092`  |
+| |                                                 | `pulsar`: `localhost:6650`  |
 | `-tp`, `--topic`           | Topic name for streaming output                                     | `test`            |
 
 ### Examples
@@ -50,11 +53,11 @@ uv run python main.py [options]
 - **Generate file data**
   - Generate `access` events of **1000 records** as `JSON`:
     ```bash
-    uv run python main.py -t file -d access -l 1000 -ff json
+    uv run python main.py -t file -d access -l 1000 -df json
     ```
   - Generate `clickstream` events for **10 minutes** as `CSV`:
     ```bash
-    uv run python main.py -t file -d clickstream -du 600 -ff csv
+    uv run python main.py -t file -d clickstream -du 600 -df csv
     ```
 
 - **Stream data to Kafka**
